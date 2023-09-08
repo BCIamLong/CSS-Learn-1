@@ -60,3 +60,68 @@ aside {
   border-bottom: 5px solid #1098ad;
   background-color: #f7f7f7;
 }
+
+/* 
+? Pseudo classes
+
+* we specify the first li element in list to bold
+* the simple way to do that is add class and style
+! but instead do manually we have other way to do it and it's better
+* we can actually have css automatically figure out which is the first li element inside of a container
+*/
+/* .first-li {
+  font-weight: bold;
+} */
+
+/* 
+* So now we will use pseudo class to do it
+*/
+li:first-child {
+  /* * this is called first-child pseudo class */
+  /* * select all the first child li elements in the parent container element */
+  font-weight: bold;
+}
+
+/* * we also have last-child Pseudo class, it also work like first child, different it's last child */
+li:last-child {
+  font-style: italic;
+}
+/*
+ * we also can specific child like second, third,... n child 
+ * we can specify it's keyword: odd(so le) to specify odd number element: 1,3,5,...n, even(so chan) specify even number: 2,4,6,...n
+ */
+/* li:nth-child(odd) or li:nth-child(even) {
+  color: red;
+} */
+/* 
+! this might useful in table style like alternating(xen ke) background colors
+*/
+/* li:nth-child(2) {
+  color: red;
+} */
+/* 
+! A thing to notice about Pseudo class
+* so if i want specify the first p element i article and turn color to red 
+*/
+article p:first-child {
+  /* * so we will do like this right
+  * but it's not working, because it's not how the first child pseudo class actually works
+  * so p element is  the first p element inside of article but it's not the first child of article because the first child article is <header> element so it's not <p> element
+  * so that's why this style CSS not work and it's only work when the <p> will be first child element of article
+  */
+
+  color: red;
+}
+
+article p:last-child {
+  /* * It'll be work why because now last child element of article is actually <p> element */
+  color: red;
+}
+/* 
+* And so you can see when we mix mutiple elements inside of a parent element then the pseudo class don't work really well
+* But it's alos perfect for situation where are child elements are in the same like li element i <ul> and <ol> right they are all <li> element
+*/
+/* 
+* Pseudo class above are all about matching the existing HTML structure
+* However there are also other types of Pseudo classes
+*/
