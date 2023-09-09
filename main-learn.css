@@ -1,12 +1,47 @@
+/* ? INHERITANCE AND UNIVERSAL SELECTOR */
+
+/*  * Universal selector
+ * basically the simply select every single element on the page and so this is useful if we actually want a certain property applied to all elements but which does not get inherited
+*/
+* {
+  /* * with inherit we can't inherit with border-top because it's impractice 
+   ! but in universal selector we can because it's set all of elements not inherit 
+   * so it might not really helpful, but it help demonstrate that we can apply a certain style to every single element on the page
+   ! this selector is actually the one with the lowest priority so it would very easy to simply overwrite this
+   * so it's maybe helpful if you want set property that does not automatically get inherited to all elements
+  */
+  /* border-top: 10px solid #1098ad; */
+}
+/* !THE DIFFERENT BODY SELECTOR AND UNIVERSAL SELECTOR THAT'S BODY SELECTOR IS INHERITANCE AND UNIVERSAL SELECTOR IS SET ALL SINGLE ELEMENT WITH CERTAIN PROPERTY */
+
+body {
+  /* * the body element is parent of all other elements in our HTML document
+  * so if we style some properties here then these values will get inherited to all of their child elements
+  * now not all properties do actually get inherited it's most little one that are about text
+  */
+  color: #444;
+  font-family: sans-serif;
+  /* * all styles in body will be inherited by some elements(not all because it's impractice), but if we overwrite values on these properties it'll not applied and use overwrite style 
+  * so  this is really elements inherited value for certain properties from one another so this is not conficting selectors
+  * or other word this body selectror is not selecting all of these elements, it really not apply to all element
+  * what we do here is declared such as color and font-family and then they simply get passed down to all the child elements that are contained within the body that why we the technique of putting these properties that are related to text into the body
+  * because there are the one that we want all of elements on the page to have
+  ! not all the properties here applied for all elements like: border-top, bottom,... and it's impractice right
+  * this border-top is only apply for body element*/
+  border-top: 10px solid #1098ad;
+}
 h1,
 h2,
 h3,
 h4,
 p,
 li {
-  font-family: sans-serif;
-  /* * this #444444 color is good for text color */
-  color: #444;
+  /* font-family: sans-serif; */
+  /* * this color will overwrite the inherited style color red of body
+  * so the interited styles are easy overwritten whenever there is any rule that applies for the same property 
+  * We can sat that inherited values are the one who have the lowest priority */
+  /* color: #444; */
+  /* * so if we remove this the inherited from body style will applied*/
 }
 
 h1,
@@ -201,4 +236,20 @@ footer p {
   * so always write your selectors as simple as possible and do not add too much nesting or don't add too many IDs and Classes all in the same selector
   */
   color: #f7f7f7 !important;
+}
+
+/* nav a:link,
+nav p {
+   * we can do like this to set font-size for a and p element 
+  font-size: 18px;
+} */
+
+/* 
+! but we can do it better
+* we can defined properties style for a container element to set all element with property we want
+* so that we will use it many times
+*/
+nav {
+  font-size: 18px;
+  /* * with this way all elemetn maybe related to text can inherited this font-size */
 }
