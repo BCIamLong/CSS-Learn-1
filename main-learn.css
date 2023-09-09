@@ -168,6 +168,37 @@ a:active {
   background-color: black;
   font-style: italic;
 }
+
+a {
+  /* * this element selector style red color is not working cuz it's less pritoty than pseudo class right */
+  color: red;
+}
+
 /* 
-! we have these four state of pseudo class always defined in this exact order link -> visited -> hover -> active => LVHA
+? CONFLICTING SELECTORS IN CSS
 */
+
+/* * Resolving conflict
+ * now we have four rules are applied to one element that <p> inside <footer>
+ * and we can use prioty rules to know what's applied for this element 
+*/
+#copyright {
+  color: red;
+}
+
+.copyright {
+  color: #1098ad;
+}
+
+.text {
+  color: #444;
+}
+/* ! decendant selector is still element selector */
+footer p {
+  /* * we can use important to to this low prioty selector to highest selector
+  ! But this is a hack that you should not be using usually
+  * just in case you really really can not figure out what's happening in your code but instead using important key word we should probably do is to write simpler selectors
+  * so always write your selectors as simple as possible and do not add too much nesting or don't add too many IDs and Classes all in the same selector
+  */
+  color: #f7f7f7 !important;
+}
