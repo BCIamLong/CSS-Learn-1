@@ -1,47 +1,76 @@
-/* ? INHERITANCE AND UNIVERSAL SELECTOR */
-
-/*  * Universal selector
- * basically the simply select every single element on the page and so this is useful if we actually want a certain property applied to all elements but which does not get inherited
+/* 
+* So we can see by default h1, h2, p ... some element in webpage have space like margins, paddings from default of browser so it might effect to out creating padding and margin process
+! Before we set padding and margin we should reset all those margins and paddings by default 
+* to do it we will use universal selector to set margin and padding to 0
+! we don't use body to get inherited margin:0; and padding:0 why? if we set it, it also have effect but not for text element because margin is not property of text element and there it's not property get inherited from parent element
+* use universal selector to set for all single elements and universal selector now is useful for this situation
+* and now we can format our page as we wish
 */
 * {
-  /* * with inherit we can't inherit with border-top because it's impractice 
-   ! but in universal selector we can because it's set all of elements not inherit 
-   * so it might not really helpful, but it help demonstrate that we can apply a certain style to every single element on the page
-   ! this selector is actually the one with the lowest priority so it would very easy to simply overwrite this
-   * so it's maybe helpful if you want set property that does not automatically get inherited to all elements
-  */
-  /* border-top: 10px solid #1098ad; */
+  /* * this kind of global reset is extremely common and this usually very fist thing we should do whenever we start our project 
+  ! keep in mind this padding and margin is easy to overwrite so every selectors can overwrite this universal selector
+  * and in more technical terms we say that universal selector has a specificity of zero which VSCode show for use when we hover to this element selector specificity (0,0,0) and it might a lowest prioty*/
+  padding: 0;
+  margin: 0;
 }
-/* !THE DIFFERENT BODY SELECTOR AND UNIVERSAL SELECTOR THAT'S BODY SELECTOR IS INHERITANCE AND UNIVERSAL SELECTOR IS SET ALL SINGLE ELEMENT WITH CERTAIN PROPERTY */
+/* 
+* RECAP: whenever you need some space inside of an element which is very useful mostly when there is a backgound color or a border on the element then you always use padding
+* on the other hand to create space outside of an element or also create space between multiple elements always use margin
+* and in this case that you need to add vertical(chieu doc) space so we should most of the time to stick to margin bottom
+*/
 
 body {
-  /* * the body element is parent of all other elements in our HTML document
-  * so if we style some properties here then these values will get inherited to all of their child elements
-  * now not all properties do actually get inherited it's most little one that are about text
-  */
   color: #444;
   font-family: sans-serif;
-  /* * all styles in body will be inherited by some elements(not all because it's impractice), but if we overwrite values on these properties it'll not applied and use overwrite style 
-  * so  this is really elements inherited value for certain properties from one another so this is not conficting selectors
-  * or other word this body selectror is not selecting all of these elements, it really not apply to all element
-  * what we do here is declared such as color and font-family and then they simply get passed down to all the child elements that are contained within the body that why we the technique of putting these properties that are related to text into the body
-  * because there are the one that we want all of elements on the page to have
-  ! not all the properties here applied for all elements like: border-top, bottom,... and it's impractice right
-  * this border-top is only apply for body element*/
+
   border-top: 10px solid #1098ad;
 }
-h1,
-h2,
-h3,
-h4,
-p,
-li {
-  /* font-family: sans-serif; */
-  /* * this color will overwrite the inherited style color red of body
-  * so the interited styles are easy overwritten whenever there is any rule that applies for the same property 
-  * We can sat that inherited values are the one who have the lowest priority */
-  /* color: #444; */
-  /* * so if we remove this the inherited from body style will applied*/
+/* 
+ ? USING PADDING AND MARGIN IN CSS
+*/
+/* 
+* we should big container selector basically big boxes contain many child elements to top part  
+* in this case we have header and aside is one of them, we also have article and footer
+*/
+.main-header {
+  background-color: #f7f7f7;
+  /* * now this padding here doesn't create the same padding on all four side of the box */
+  padding: 20px;
+  /* * but we can specify for left, right, top, bottom padding look like border */
+  padding-left: 40px;
+  padding-right: 40px;
+  /* * but we have other way to do it better this is shorthand allow us specify multiple values 
+  ! padding: value_1 => like above code it's specify all four site 
+  ! padding: value1 value2; => value1 specify for top, bottom and value2 specify for left and right
+  */
+  padding: 20px 40px;
+  /* ! itis very common to use mostly space at the bottom in order to create verical space
+  * so just stick(bam) to either margin top and margin bottom so one of them is find
+  ! but it's best not to always mix them when you want to create space between elements
+  * for jonas dev he like margin bottom, maybe it's good but margin top can good in some certain case right*/
+  margin-bottom: 60px;
+}
+
+.post-header {
+  margin-bottom: 30px;
+}
+
+nav {
+  font-size: 18px;
+}
+
+article {
+  margin-bottom: 60px;
+}
+
+aside {
+  border-top: 5px solid #1098ad;
+  border-bottom: 5px solid #1098ad;
+  background-color: #f7f7f7;
+  /* padding-top: 20px;
+  padding-bottom: 20px;
+  * we should use shorthand to specify if we have many values */
+  padding: 30px 0;
 }
 
 h1,
@@ -58,10 +87,18 @@ h1 {
 
 h2 {
   font-size: 40px;
+  margin-bottom: 20px;
 }
 
 h3 {
   font-size: 30px;
+  margin-bottom: 20px;
+  /* ! we have problem here because the before element also have margin-bottom: 15px and now we use margin-top: 40px and it looks like 15+40= 55px 
+  !but in fact it's not, space of two element is 40px not 55 px
+  * and this phenomena is called collapsings(thu gon) margins so basically when we have two margin that occupied the same space only one of them is actually visible on the page and that is usually the larger of the two
+  ? if the values in the same? so it just take random one of two like 40px + 40px = 80 px but in fact it's 40px for space of two elements
+  * and so if you want the space is 55 px maybe we need specify space of one of two element is 55px*/
+  margin-top: 40px;
 }
 
 h4 {
@@ -73,9 +110,23 @@ h4 {
 p {
   font-size: 21px;
   line-height: 1.5;
+  margin-bottom: 15px;
 }
+/* * we can specify margin to li element to have good space between of them */
 li {
+  /* ! notice that we don't want the last element have a space because we only want for each of them */
   font-size: 20px;
+  margin-bottom: 20px;
+}
+/* * so can use trick with use pseudo last-child class */
+li:last-child {
+  /* margin-bottom: 0px; 
+  ! notice that when use 0 we don't need specify unit like px, %,....
+  */
+  margin-bottom: 0;
+  /* * this will overwrite margin-bottom befor of the last li element 
+  * we will now keep adding more and more margins and padding to all of our elements
+  */
 }
 
 footer p {
@@ -86,118 +137,40 @@ article header p {
   font-style: italic;
 }
 
-.main-header {
-  background-color: #f7f7f7;
+/* * we need some space to display the numbers, and points on the list because we reseted margin and paddin in our page right */
+ul,
+ol {
+  margin-left: 30px;
+  margin-bottom: 20px;
 }
 
-aside {
-  border-top: 5px solid #1098ad;
-  border-bottom: 5px solid #1098ad;
-  background-color: #f7f7f7;
-}
-
-/* 
-? Pseudo classes
-
-* we specify the first li element in list to bold
-* the simple way to do that is add class and style
-! but instead do manually we have other way to do it and it's better
-* we can actually have css automatically figure out which is the first li element inside of a container
-*/
-/* .first-li {
-  font-weight: bold;
-} */
-
-/* 
-* So now we will use pseudo class to do it
-*/
 li:first-child {
-  /* * this is called first-child pseudo class */
-  /* * select all the first child li elements in the parent container element */
   font-weight: bold;
 }
 
-/* * we also have last-child Pseudo class, it also work like first child, different it's last child */
 li:last-child {
   font-style: italic;
 }
-/*
- * we also can specific child like second, third,... n child 
- * we can specify it's keyword: odd(so le) to specify odd number element: 1,3,5,...n, even(so chan) specify even number: 2,4,6,...n
- */
-/* li:nth-child(odd) or li:nth-child(even) {
-  color: red;
-} */
-/* 
-! this might useful in table style like alternating(xen ke) background colors
-*/
-/* li:nth-child(2) {
-  color: red;
-} */
-/* 
-! A thing to notice about Pseudo class
-* so if i want specify the first p element i article and turn color to red 
-*/
-article p:first-child {
-  /* * so we will do like this right
-  * but it's not working, because it's not how the first child pseudo class actually works
-  * so p element is  the first p element inside of article but it's not the first child of article because the first child article is <header> element so it's not <p> element
-  * so that's why this style CSS not work and it's only work when the <p> will be first child element of article
-  */
 
+article p:first-child {
   color: red;
 }
 
-/* article p:last-child {
-  color: red;
-} */
-
-/* ?STYLE WITH LINKS(HYPERLINKS) */
-
-/* *basic style with links with selector anchor <a> element */
-/* a {
-  color: #1098ad;
-} */
-/* 
-! however it's not good practice, we should not simply select anchor and style them
-* instead we should style a pseudo(gia) class of the anchor because that will then allow us to target different states
-*/
 a:link {
-  /* * use pseudo link class to target all the anchor element that have an href attribute 
-  * because if we use <a> selector it'll target all <a> element even <a> not have href(not really link) so it's not good
-  * with this we target to actual link
-  */
   color: #1098ad;
-  /* *text-decoration: remove underline of link, and usyally we always use none value for this */
   text-decoration: none;
 }
 
-/* * visited pseudo class to style <a> element after they click
-! But in practice we never do that, so on normal pages usually we always just give the visited links the same color as on the link pseudo class
-* we can see visited pseudo class look like link pseudo class so actually we can group them to one
-*/
 a:visited {
-  /* color: red; */
   color: #1098ad;
 }
 
-/* 
-* hover pseudo class which more important
-* with hover pseudo class we can define any style that we want to be applied to the anchor as soon as the element is hovered by the mouse
-*/
 a:hover {
   color: rgba(255, 0, 0, 0.39);
   font-weight: bold;
   text-decoration: underline solid olivedrab;
-  /* * text-decoration is shorthand property cuz we can defined mutiple values text-decoration: line, style, color
-  ! we don't need specify all three values, we can specify 1 or 2 or 3
-  */
 }
 
-/* 
-* active pseudo class
-* this is a state in which we are actually clicking, when we click on the link that time the active pseudo class is added to element
-*/
 a:active {
   /* color: red; */
   background-color: black;
@@ -205,18 +178,9 @@ a:active {
 }
 
 a {
-  /* * this element selector style red color is not working cuz it's less pritoty than pseudo class right */
   color: red;
 }
 
-/* 
-? CONFLICTING SELECTORS IN CSS
-*/
-
-/* * Resolving conflict
- * now we have four rules are applied to one element that <p> inside <footer>
- * and we can use prioty rules to know what's applied for this element 
-*/
 #copyright {
   color: red;
 }
@@ -228,28 +192,6 @@ a {
 .text {
   color: #444;
 }
-/* ! decendant selector is still element selector */
 footer p {
-  /* * we can use important to to this low prioty selector to highest selector
-  ! But this is a hack that you should not be using usually
-  * just in case you really really can not figure out what's happening in your code but instead using important key word we should probably do is to write simpler selectors
-  * so always write your selectors as simple as possible and do not add too much nesting or don't add too many IDs and Classes all in the same selector
-  */
   color: #f7f7f7 !important;
-}
-
-/* nav a:link,
-nav p {
-   * we can do like this to set font-size for a and p element 
-  font-size: 18px;
-} */
-
-/* 
-! but we can do it better
-* we can defined properties style for a container element to set all element with property we want
-* so that we will use it many times
-*/
-nav {
-  font-size: 18px;
-  /* * with this way all elemetn maybe related to text can inherited this font-size */
 }
