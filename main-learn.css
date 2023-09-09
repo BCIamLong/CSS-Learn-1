@@ -113,15 +113,61 @@ article p:first-child {
   color: red;
 }
 
-article p:last-child {
-  /* * It'll be work why because now last child element of article is actually <p> element */
+/* article p:last-child {
   color: red;
+} */
+
+/* ?STYLE WITH LINKS(HYPERLINKS) */
+
+/* *basic style with links with selector anchor <a> element */
+/* a {
+  color: #1098ad;
+} */
+/* 
+! however it's not good practice, we should not simply select anchor and style them
+* instead we should style a pseudo(gia) class of the anchor because that will then allow us to target different states
+*/
+a:link {
+  /* * use pseudo link class to target all the anchor element that have an href attribute 
+  * because if we use <a> selector it'll target all <a> element even <a> not have href(not really link) so it's not good
+  * with this we target to actual link
+  */
+  color: #1098ad;
+  /* *text-decoration: remove underline of link, and usyally we always use none value for this */
+  text-decoration: none;
+}
+
+/* * visited pseudo class to style <a> element after they click
+! But in practice we never do that, so on normal pages usually we always just give the visited links the same color as on the link pseudo class
+* we can see visited pseudo class look like link pseudo class so actually we can group them to one
+*/
+a:visited {
+  /* color: red; */
+  color: #1098ad;
+}
+
+/* 
+* hover pseudo class which more important
+* with hover pseudo class we can define any style that we want to be applied to the anchor as soon as the element is hovered by the mouse
+*/
+a:hover {
+  color: rgba(255, 0, 0, 0.39);
+  font-weight: bold;
+  text-decoration: underline solid olivedrab;
+  /* * text-decoration is shorthand property cuz we can defined mutiple values text-decoration: line, style, color
+  ! we don't need specify all three values, we can specify 1 or 2 or 3
+  */
+}
+
+/* 
+* active pseudo class
+* this is a state in which we are actually clicking, when we click on the link that time the active pseudo class is added to element
+*/
+a:active {
+  /* color: red; */
+  background-color: black;
+  font-style: italic;
 }
 /* 
-* And so you can see when we mix mutiple elements inside of a parent element then the pseudo class don't work really well
-* But it's alos perfect for situation where are child elements are in the same like li element i <ul> and <ol> right they are all <li> element
-*/
-/* 
-* Pseudo class above are all about matching the existing HTML structure
-* However there are also other types of Pseudo classes
+! we have these four state of pseudo class always defined in this exact order link -> visited -> hover -> active => LVHA
 */
