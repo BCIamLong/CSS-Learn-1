@@ -81,8 +81,10 @@ h1 {
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 35px;
   margin-bottom: 20px;
+  /* * set relatived position paren container element  */
+  position: relative;
 }
 
 h3 {
@@ -244,4 +246,76 @@ button {
   bottom: 50px;
   right: 50px;
   /* !Now it’s not working right with what we want because it work relation to viewport not the page so we need set position to relative on the page and that is body element */
+}
+
+/*
+  * Example change icon in h1 content is not italic cuz it's not make sense by use pseudo elements feature of CSS 
+  * notice that pseudo classes write with one colon but to specify sudo element we can use two colons(dau 2 cham): :: and with that we can easily distinguish between pseudo elements and pseudo classes
+  *and in this case we can use first-letter pseudo element to do it
+  */
+h1::first-letter {
+  font-style: normal;
+  margin-left: 5px;
+}
+/* *we can use this not only h1 element and can use for other element text like h1, p,... but not for emojis 
+* so basically we selected this pseudo element which again is not actually an element in the HTML but it  as if it was an element that we can select and then style right here*/
+
+/* h2::first-letter {
+  font-size: 60px;
+} */
+
+/* p::first-line {
+  color: #ff0000;
+} */
+
+/* * new selector which is adjacent element selector or the adjacent sibling selector
+* so a sibling element is basically an element that is part of the same parent
+* like in main-header we have two element h1, nav and two this is sibling 
+* like in article class product we have many elements like h2, p(many p element), ul,... and they also are sibling elements(many p elements also sibling)
+* --> Now the adjacent sibling is a sibling that is actually very next element, is basically the sibling that comes right after it
+* ---to select adjacent sibling we use + notation
+! and so the adjacent element selector which in some cases is actually quite important
+*/
+/* * we selected h3 adjacent sibling is p element and use first-line pseudo element to set style for the first line p element  */
+h3 + p::first-line {
+  color: #ff0000;
+}
+
+/* ! and now we have two pseudo elements which the most used and most important element which are the after and the before pseudo element 
+* so the after pseudo element create a pseudo element that will automatically be the very first child of the selected element
+* it's very useful for some small cosmetic style for which we don't want to necessarily add a new element to the HTMLs
+* let assume we want some small cosmetic style for after h2 element in our main header 
+ */
+
+/* ! we also have before pseudo element
+ * but actually that would look exactly the same way
+ * the different is that after will basically become the very last child element of the one that we selecting here(in this case it h2 element) while before will become the very first child element
+ * but when we specify absolute position we can see that two look like in the same so that doesn't  matter at all how result look like so no matter you use after of before pseudo element
+ */
+.post-header h2::after {
+  /* * and now we need the first property that is mandatory to specify here is the content property 
+  * and in here we need write something, but it's also can be a empty string like this "" 
+  ! if you don't have content you must to specify this content property basically is empty string and that this point pseudo elements should already be visible in our page*/
+  content: "TOP";
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  /* * by default any pseudo element is actually an inline element (but may be it's also not true cuz we can called inline level and we can add padding as normal) and therefore we need consvert this to block-level or inline-block box
+  * and this is actually one of the great use cases of using inline block*/
+  display: inline-block;
+  padding: 5px;
+  /* cursor: pointer; */
+  /* * we can use absolute position to set this pseudo element has a meaningful place
+  * and to that first we need defined the relative parent container element in here i also use body as relative parent element again 
+  * but now we also can set it with h2 element and use negative length to do it*/
+  position: absolute;
+  /* * negative length:
+  * we can set negative length it'll apply for opposite direction of positive value so out side the element */
+  top: -30px;
+  right: -30px;
+  /* * #ffe70e is good yellow color */
+  background-color: #ffe70e;
+  /* ! this elemetn we created and styled doesn't exist on HTML code 
+  * CSS created it here to style and apply to HTML code
+  * and it's also look like the real element*/
 }
