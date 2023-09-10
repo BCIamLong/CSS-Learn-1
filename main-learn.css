@@ -2,23 +2,34 @@
   padding: 0;
   margin: 0;
 }
+/* ? ABSOLUTE POSITIONING
+* RECAP: with absolute positioning you can basically put any element that you want wherever you want it to be on the page and of course can be quite helpful
+* now important that you don't abuse(lam dung) this newfound power so don't use this to build complex layouts
+* for example instean we use absolute positioning for single elements like this button other small things
+! but in the real world we don't use this for example to position menu like in the top of page or to position for example author image
+* for those things we will use special techniques for building layouts
+! don't simply reach for absolute  positioning for example to build layouts
+*/
 
 body {
   color: #444;
   font-family: sans-serif;
 
   border-top: 10px solid #1098ad;
+  /* * we need to set relative to become the relative element of like button and no it's not viewport
+  * of course we can also position this like button to inside any other parent element not must be body */
+  position: relative;
 }
-/* ? Types of Boxes CSS
 
-*RECAP: most of the time we will actually leave the display setting alone and simply use the predefined box type because by default they do actually make a lot of sense
-* However we can use display set to block in order to make a small inline element for example occupy an entire line which is something that we will need in certain situations in the real world
-* Then some time we don't want a block-level element to push all the other elements into new line so basically we don't want them occupy all available blank space that there is to fill in that case we can set them to inline or inline-block element
-*/
 /** PAGE SECTION */
 .container {
   width: 700px;
   margin: 0 auto;
+  /* * let try position like button to container parent element and we need to set position relative 
+  ! Notice if the parent element contain this don't have relative position so it'll find the bigger container for have relative and if it's not found well it will relation with viewport by default
+  * other hand we can say the first relative parent is relation with absolute positioned */
+
+  /* position: relative; */
 }
 
 .main-header {
@@ -33,6 +44,10 @@ body {
 
 .post-header {
   margin-bottom: 30px;
+  /* * let test the first relative parent is will apply and this header is the parent container of this like button */
+  /* position: relative; */
+  /* * so now it's work because it's the first relatived position parent container of this like button
+  * if it's not relative well the relative bigger parent container will take it and if not it'll relation to viewport by default */
 }
 
 nav {
@@ -205,4 +220,28 @@ nav a:link {
 */
 nav a:link:last-child {
   margin-right: 0;
+}
+
+button {
+  position: absolute;
+  font-size: 22px;
+  padding: 20px;
+  cursor: pointer;
+  /* * we can set it to absolute but we need specify top, bottom, left, or right to this position really work if we don't have one of them it's not work */
+  position: absolute;
+  /* * we should top and left position to 0 and it's good start point
+  * and it is being counted from the top of the viewport which is visible part of the page
+  * by default this element is positioned in relation to viewport
+  * now it's out of flow and can overlap any element
+  * because it's absolute position so when we change the window it's not change anything */
+  /* top: 50px;
+  left: 50px; */
+  /* ! the important here the top 50px and left 50px need to relation something 
+  * and by default these 50px here are in relation to the viewport so the visible part of the page in browser you can see that we set bottom 0 it move down to last one of the page
+  !however that's not usually what we want, usually we want absolutely position the element in relation some other parent element
+  * and in order to do that we need to specifycally set the position of that parent element to relative
+  * in this case we want  this element here to be positioned in the right bottom corner of the page of the page not of the viewport */
+  bottom: 50px;
+  right: 50px;
+  /* !Now it’s not working right with what we want because it work relation to viewport not the page so we need set position to relative on the page and that is body element */
 }
