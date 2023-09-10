@@ -1,23 +1,7 @@
-/* 
-* So we can see by default h1, h2, p ... some element in webpage have space like margins, paddings from default of browser so it might effect to out creating padding and margin process
-! Before we set padding and margin we should reset all those margins and paddings by default 
-* to do it we will use universal selector to set margin and padding to 0
-! we don't use body to get inherited margin:0; and padding:0 why? if we set it, it also have effect but not for text element because margin is not property of text element and there it's not property get inherited from parent element
-* use universal selector to set for all single elements and universal selector now is useful for this situation
-* and now we can format our page as we wish
-*/
 * {
-  /* * this kind of global reset is extremely common and this usually very fist thing we should do whenever we start our project 
-  ! keep in mind this padding and margin is easy to overwrite so every selectors can overwrite this universal selector
-  * and in more technical terms we say that universal selector has a specificity of zero which VSCode show for use when we hover to this element selector specificity (0,0,0) and it might a lowest prioty*/
   padding: 0;
   margin: 0;
 }
-/* 
-* RECAP: whenever you need some space inside of an element which is very useful mostly when there is a backgound color or a border on the element then you always use padding
-* on the other hand to create space outside of an element or also create space between multiple elements always use margin
-* and in this case that you need to add vertical(chieu doc) space so we should most of the time to stick to margin bottom
-*/
 
 body {
   color: #444;
@@ -25,13 +9,30 @@ body {
 
   border-top: 10px solid #1098ad;
 }
-/* 
- ? USING PADDING AND MARGIN IN CSS
+/* ? CENTERING OUR PAGE
+
+* First: we need put all container element inside body to container box 
+* Second: we need centering this container by use some margin left and right
 */
-/* 
-* we should big container selector basically big boxes contain many child elements to top part  
-* in this case we have header and aside is one of them, we also have article and footer
-*/
+
+.container {
+  /* * now all element in container can't have a width greater than 700px and if it greaters it'll auto set to 700px
+  ! it's not inheritance because inheritance is related to text and width not property of text remember that
+  * instead it is simply logic that child element can nerver wider than(rong hon) the parent element*/
+  width: 700px;
+  /* * now we will center this container by use margin left and right 
+  * auto that means is that the margin on the left need to be the same then the margin on the right side and they should both caculated automatically by the browser
+  * and so therefore this will mean that there will be a margin on the left and on the right which will be exactly the same size
+  * therefore in the result the container will look centered inside of the body so basically inside of browser
+  */
+  /* margin-left: auto; */
+  /* * auto: browser will automatically figure out the width
+  * now when we resize or change size of webage on browser by pull tab so it's alway in center cuz browser auto figure out the width with margin right and left */
+  /* margin-right: auto; */
+  /* * when use many values we should use shorthand */
+  margin: 0 auto;
+}
+
 .main-header {
   background-color: #f7f7f7;
   /* padding: 20px;
