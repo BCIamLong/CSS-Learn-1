@@ -9,27 +9,15 @@ body {
 
   border-top: 10px solid #1098ad;
 }
-/* ? CENTERING OUR PAGE
+/* ? Types of Boxes CSS
 
-* First: we need put all container element inside body to container box 
-* Second: we need centering this container by use some margin left and right
+*RECAP: most of the time we will actually leave the display setting alone and simply use the predefined box type because by default they do actually make a lot of sense
+* However we can use display set to block in order to make a small inline element for example occupy an entire line which is something that we will need in certain situations in the real world
+* Then some time we don't want a block-level element to push all the other elements into new line so basically we don't want them occupy all available blank space that there is to fill in that case we can set them to inline or inline-block element
 */
-
+/** PAGE SECTION */
 .container {
-  /* * now all element in container can't have a width greater than 700px and if it greaters it'll auto set to 700px
-  ! it's not inheritance because inheritance is related to text and width not property of text remember that
-  * instead it is simply logic that child element can nerver wider than(rong hon) the parent element*/
   width: 700px;
-  /* * now we will center this container by use margin left and right 
-  * auto that means is that the margin on the left need to be the same then the margin on the right side and they should both caculated automatically by the browser
-  * and so therefore this will mean that there will be a margin on the left and on the right which will be exactly the same size
-  * therefore in the result the container will look centered inside of the body so basically inside of browser
-  */
-  /* margin-left: auto; */
-  /* * auto: browser will automatically figure out the width
-  * now when we resize or change size of webage on browser by pull tab so it's alway in center cuz browser auto figure out the width with margin right and left */
-  /* margin-right: auto; */
-  /* * when use many values we should use shorthand */
   margin: 0 auto;
 }
 
@@ -40,7 +28,7 @@ body {
   padding-right: 40px; */
   padding: 20px 40px;
   margin-bottom: 60px;
-  height: 80px;
+  /* height: 80px; */
 }
 
 .post-header {
@@ -64,6 +52,7 @@ aside {
   width: 500px;
 }
 
+/* *SMALLER ELEMENT */
 h1,
 h2,
 h3 {
@@ -103,21 +92,15 @@ p {
   line-height: 1.5;
   margin-bottom: 15px;
 }
-/* * we can specify margin to li element to have good space between of them */
 li {
-  /* ! notice that we don't want the last element have a space because we only want for each of them */
+  /* * we can consvert the block-level element to inline element 
+  * and so now they are side by side*/
   font-size: 20px;
   margin-bottom: 20px;
+  display: inline;
 }
-/* * so can use trick with use pseudo last-child class */
 li:last-child {
-  /* margin-bottom: 0px; 
-  ! notice that when use 0 we don't need specify unit like px, %,....
-  */
   margin-bottom: 0;
-  /* * this will overwrite margin-bottom befor of the last li element 
-  * we will now keep adding more and more margins and padding to all of our elements
-  */
 }
 
 footer p {
@@ -187,17 +170,39 @@ footer p {
   color: #f7f7f7 !important;
 }
 .post-img {
-  /* * we don't specify the heigh and width in HTML, instead we should specify it in CSS 
-  * when we specify the valude for height and width, then we can specify it's auto and auto value basically will automatically adapt in  order to account for the original aspect ratio of the image
-  * it might good in case you don't now what's value for height or width to the image look better*/
-  /* height: 300px;
-  width: auto; */
-  /* 
-  * Now we can use other unit to change pixel and that's percentages(%)
-  * and the percent usually the percentage of the width of parent container
-  * when size of parent container change the size of image always adapt
-  * and it's really important when we build responsive website so website that adapt to the screen width
-  */
+  /* ! the image is inline element but infact it has behave like inline-block elements */
   width: 100%;
   height: auto;
+  /* * and to demonstrate we can add some margin */
+  /* margin: 100px; */
+  /* * and if it's purely inline element so it's not work with margin top and bottom right */
+}
+
+nav a:link {
+  /* background-color: #ffa500; */
+  /* * this is an inline element so we can see the box model don't apply exactly 
+   * only apply for left and right sides right, and dot't effect to vertical space top and bottom
+  */
+  /* margin: 20px; */
+  /* *it's alos similar with padding */
+  /* padding: 20px; */
+  /* * so if we want it like block-level element have some space and elements one after another we can use display property to consvert to block-level element */
+  /* display: block; */
+  /* * now the anchor element here has all conditions to of being a block-level element
+  * so now the box model applies to them normally, and they can occupy 100% width and all other of box model */
+  /* 
+! now we can use inline-block boxes for this 
+*/
+  display: inline-block;
+  /* padding: 20px; 
+  ! when we add some space for between elements we should use margin*/
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+/* * we can chain pseudo class 
+* so many times that;s important to do to remove the space of last element not nessecary
+*/
+nav a:link:last-child {
+  margin-right: 0;
 }
