@@ -11,6 +11,14 @@
 ! don't simply reach for absolute  positioning for example to build layouts
 */
 
+/* * PRIORITY SELECTOR: IF IT'S SAME  SELECTOR BUT ONE WRITE MORE CONPLEX(.main-header nav a:link) AND ONE NOT(nav a:link) THEN MORE COMPLEX SELECTOR WILL APPLY
+* you can see .main-header nav a:link has selector specificity(0,2,2) and nav a:link (0,1,2) so you see more complex selector > so it'll apply
+! SO WE SHOULD AVOID THIS BY DON'T WRITE MORE COMPLEX SELECTOR AND WRITE SIMPLE SELECTOR AND KEEP OUR SPECIFICITY SELECTOR IS LOW */
+/* .main-header nav a:link {
+  ! if you write complex selector then this complex selector has more prioty than your normal selector therefore you should avoid write complex selector
+  margin-top: 100px;
+} */
+
 body {
   color: #444;
   font-family: sans-serif;
@@ -52,7 +60,14 @@ body {
 
 nav {
   font-size: 18px;
+  text-align: center;
+  /* !https://developer.mozilla.org/en-US/docs/Web/CSS/text-align */
 }
+/* nav a:link{
+  * it will not work why because it is inline-block and when used text-align: center it's also look like normal because inline-block element has space for their content itself so  center is also normal inline element just this and it couldn't center
+  * so solution is add text-align into the parent content this element and remember it's only work for inline or inline-block elements, ...maybe some type of box we haven't not yet
+  text-align: center;
+} */
 
 article {
   margin-bottom: 60px;
